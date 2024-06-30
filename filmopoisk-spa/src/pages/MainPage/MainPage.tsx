@@ -36,7 +36,7 @@ const reducer = (state: SearchParams, action: { type: string, payload: any }): a
         case 'setCurrentPage':
             return { ...state, currentPage: action.payload };;
         case 'reset':
-            return { ...state, search: '', genre: '0', year: '0' };
+            return { ...state, search: '', genre: '0', year: '0', currentPage: 1 };
         default:
             return state;
     }
