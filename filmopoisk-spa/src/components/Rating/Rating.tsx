@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Rating.module.css';
 import { FilledStar } from '../Star/FilledStar';
 import { UnfilledStar } from '../Star/UnfilledStar';
+import useDebounceFunc from '../../hooks/useDebounceFunc';
 
 interface RatingProps {
     totalCount?: number;
@@ -13,6 +14,13 @@ interface RatingProps {
 export const Rating: React.FC<RatingProps> = ({ rating = 0, onChange, totalCount = 5 }) => {
     const [curRate, setCurRate] = useState(rating);
     const [curHover, setCurHover] = useState(-1);
+
+    const debouncedOnChange = useDebounceFunc((rate: number) => {
+        if (onChange && rate !== curRate) {
+            onChange(rate);
+        }
+    }, 500);
+    
     function handleMouseEnter(index: number) {
         setCurHover(index);
     }
@@ -24,7 +32,7 @@ export const Rating: React.FC<RatingProps> = ({ rating = 0, onChange, totalCount
     function handleClick(rate: number, event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         event.stopPropagation();
         setCurRate(rate);
-        if (onChange && rate !== curRate) onChange(rate);
+        debouncedOnChange(rate);
     }
 
     return (

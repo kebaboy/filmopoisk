@@ -6,15 +6,15 @@ interface SelectProps {
     placeholder?: string;
     style?: React.CSSProperties;
     onChange: (value: any) => void;
+    value?: any;
 }
 
-export const Select: React.FC<SelectProps> = ({ options, placeholder = 'Выберите опцию', onChange, ...props }) => {
+export const Select: React.FC<SelectProps> = ({ options, placeholder = 'Выберите опцию', onChange, value, ...props }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState(value || '');
     const selectRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // todo: fix close on option outside
         const handleClickOutside = (event: MouseEvent) => {
             if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
                 setIsOpen(false);

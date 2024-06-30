@@ -14,7 +14,7 @@ export const MoviePage = () => {
     const isAuth = useSelector(selectIsAuth);
 
     const handleRateMovie = (userRate: number) => {
-        localStorage.setItem(`movie-rating-${movieId}`, userRate.toString());
+        localStorage.setItem(`movie-rating-${movieId}`, userRate?.toString());
 
         rateMovieMutation({ movieId: movieId!, user_rate: userRate });
     };
@@ -68,7 +68,7 @@ export const MoviePage = () => {
             </section>
             <section>
                 <h2 className={styles.actorsTitle}>Актеры</h2>
-                <ActorSlider actors={movie.actors} />
+                <ActorSlider actors={[...movie.actors, ...movie.actors, ...movie.actors, ...movie.actors]} />
             </section>
         </div>
     );

@@ -1,5 +1,5 @@
 .actorCard {
-    width: 160px;
+    flex: 0 0 160px;
     display: inline-flex;
     flex-direction: column;
     gap: 16px;
@@ -10,7 +10,7 @@
     overflow: hidden;
 }
 .actorImage img {
-    width: 100%;
+    max-width: 100%;
     object-fit: cover;
     object-position: center;
 }

@@ -6,26 +6,26 @@ import { Movies } from "../../components/Movies/Movies";
 import { Pagination } from "../../UI/Pagination/Pagination";
 import { moviesApi } from "../../state/MoviesAPI/MoviesAPI";
 import { getKeyByValue } from "../../utils/utils";
-import useDebounce from "../../hooks/useDebounce";
+import useDebounceValue from "../../hooks/useDebounceValue";
 import { Loader } from "../../UI/Loader/Loader";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import { useSearchParams } from "react-router-dom";
 
 interface SearchParams {
     search: string;
-    genre: string;
-    year: string;
+    genre: keyof typeof GENRES | '0';
+    year: keyof typeof YEARS | '0';
     currentPage: number;
 }
 
-const initialState = {
-    search: '',
-    genre: '0',
-    year: '0',
-    currentPage: 1,
-}
+// type Action =
+//     | { type: 'setSearch'; payload: string }
+//     | { type: 'setGenre'; payload: keyof typeof GENRES | '0' }
+//     | { type: 'setYear'; payload: keyof typeof YEARS | '0' }
+//     | { type: 'setCurrentPage'; payload: number }
+//     | { type: 'reset' };
 
-const reducer = (state: SearchParams, action: { type: string; payload: any }): SearchParams => {
+const reducer = (state: SearchParams, action: { type: string, payload: any }): any => {
     switch (action.type) {
         case 'setSearch':
             return { ...state, search: action.payload, currentPage: 1 };
@@ -44,34 +44,20 @@ const reducer = (state: SearchParams, action: { type: string; payload: any }): S
 
 export const MainPage: React.FC = () => {
     const [searchParamsUrl, setSearchParamsUrl] = useSearchParams();
-
-    useEffect(() => {
-        if (searchParamsUrl.get('search')) {
-            dispatch({ type: 'setSearch', payload: searchParamsUrl.get('search') || '' });
-        }
-        if (searchParamsUrl.get('genre')) {
-            dispatch({ type: 'setGenre', payload: searchParamsUrl.get('genre') || '0' });
-        }
-        if (searchParamsUrl.get('year')) {
-            dispatch({ type: 'setYear', payload: searchParamsUrl.get('year') || '0' });
-        }
-        if (searchParamsUrl.get('page')) {
-            dispatch({ type: 'setCurrentPage', payload: Number(searchParamsUrl.get('page')) || 1 });
-        }
-    }, []);
-
-    const [searchParams, dispatch] = useReducer(reducer, initialState);
+    const [searchParams, dispatch] = useReducer(reducer, {
+        search: searchParamsUrl.get('search') || '',
+        genre: searchParamsUrl.get('genre') || '0',
+        year: searchParamsUrl.get('year') || '0',
+        currentPage: Number(searchParamsUrl.get('page')) || 1,
+    });
     const { search, genre, year, currentPage } = searchParams;
-
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setSearchParamsUrl({ search, genre, year, page: currentPage.toString() });
-    }, [search, genre, year, currentPage, setSearchParamsUrl]);
-
-
-
-    const [loading, setLoading] = useState(false);
-    const debouncedSearch = useDebounce(search);
+    }, [search, genre, year, currentPage, setSearchParamsUrl]);;
+    
+    const debouncedSearch = useDebounceValue(search);
 
     const { searchResults, totalPages, isLoading, isFetching } = moviesApi.useGetMoviesQuery(
         {page: currentPage, title: debouncedSearch, genre, release_year: year}, 
@@ -93,7 +79,7 @@ export const MainPage: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <MoviesFilter genres={Object.values(GENRES)} years={Object.values(YEARS)} onGenreChange={(option) =>dispatch({ type: 'setGenre', payload: getKeyByValue(GENRES, option)})} onYearChange={(option) => dispatch({ type: 'setYear', payload: getKeyByValue(YEARS, option) })}/>
+            <MoviesFilter filter={{ genre, year }} genres={Object.values(GENRES)} years={Object.values(YEARS)} onGenreChange={(option) =>dispatch({ type: 'setGenre', payload: getKeyByValue(GENRES, option)})} onYearChange={(option) => dispatch({ type: 'setYear', payload: getKeyByValue(YEARS, option) })}/>
             <div className={styles.movies}>
                 <SearchInput className={styles.search} placeholder="Название фильма" value={search} onChange={(event) => dispatch({ type: 'setSearch', payload: event.target.value })}/>
                     {isLoading

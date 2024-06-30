@@ -9,9 +9,8 @@
     transform: translate(0, -50%);
 }
 .searchIcon {
-    pointer-events: none; /* Allows clicks to pass through to the input field */
-    /* !! */
-    /* cursor: ; */
+    pointer-events: none;
+
     left: 12px;
 }
 .clear {
