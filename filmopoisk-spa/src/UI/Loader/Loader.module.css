@@ -1,0 +1,15 @@
+.loader {
+    display: inline-block;
+    --width: 50px;
+    width: var(--width);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: calc(var(--width) / 10) solid var(--cl-light-grey);
+    border-top: calc(var(--width) / 10) solid var(--cl-background-dark);
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {   
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

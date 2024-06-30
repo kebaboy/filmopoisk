@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background-color: var(--cl-light);
+    border-radius: var(--border-radius);
+    height: fit-content;
+}
+.title {
+    margin: 0px 0px 20px 0px;
+    color: var(--cl-dark-grey);
+    font-weight: 600;
+    font-style: 16px;
+}
+.label {
+    margin: 0px 0px 4px 0px;
+}
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.filter {
+
+}

@@ -1,0 +1,20 @@
+.container {
+    width: 100%;
+    position: relative;
+}
+
+.searchIcon, .clear {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.searchIcon {
+    pointer-events: none; /* Allows clicks to pass through to the input field */
+    /* !! */
+    /* cursor: ; */
+    left: 12px;
+}
+.clear {
+    cursor: pointer;
+    right: 12px;
+}

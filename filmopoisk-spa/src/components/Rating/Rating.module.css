@@ -1,0 +1,26 @@
+.star {
+    display: inline-flex;
+    cursor: pointer;
+    padding: 0px 4px;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.starContainer:hover .star path,
+.starContainer:hover ~ .starContainer .star path {
+    fill: var(--cl-orange);
+}
+
+/* .starContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+} */
+
+.container {
+    display: flex;
+    margin: 0px -4px;
+    color: var(--cl-light-grey);
+}

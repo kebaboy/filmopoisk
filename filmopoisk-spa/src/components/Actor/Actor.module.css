@@ -1,0 +1,16 @@
+.actorCard {
+    width: 160px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.actorImage {
+    border-radius: var(--border-radius);
+    flex: 0 0 228px;
+    overflow: hidden;
+}
+.actorImage img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}

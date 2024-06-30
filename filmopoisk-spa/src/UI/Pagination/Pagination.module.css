@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+}
+
+.arrowNext, .arrowPrev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--cl-light);
+    box-shadow: 0px 0px 4px 0px #0000004D;
+}
+.arrowNext:disabled, .arrowPrev:disabled {
+    opacity: .4;
+}
+
+.arrowPrev {
+    svg {
+        transform: rotate(180deg);
+    }
+}
+

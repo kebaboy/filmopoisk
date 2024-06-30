@@ -1,0 +1,24 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 32px;
+    background-color: var(--cl-background-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+.title {
+    color: var(--cl-light);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 37.5px;
+}
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}

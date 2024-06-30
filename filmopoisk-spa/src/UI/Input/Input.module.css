@@ -1,0 +1,22 @@
+.input {
+    width: 100%;
+    cursor: pointer;
+    line-height: 16px;
+    padding: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--border-radius);
+    border-color: transparent;
+}
+
+.input:hover {
+    border-color: var(--input-hover-color);
+}
+
+.input:focus {
+    border-color: var(--cl-orange);
+}
+
+.input:disabled {
+    opacity: .7;
+}

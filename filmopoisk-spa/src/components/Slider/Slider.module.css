@@ -1,0 +1,40 @@
+/* ActorSlider.module.css */
+.actorSliderContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.actorSlider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 24px;
+}
+
+.arrowLeft,
+.arrowRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.arrowLeft {
+    left: 0;
+}
+
+.arrowRight {
+    right: 0;
+}
+
+.arrowLeft:disabled,
+.arrowRight:disabled {
+    background: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}

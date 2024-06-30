@@ -1,0 +1,16 @@
+.button {
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    padding: 10px 16px;
+    border: 1px solid var(--cl-orange);
+}
+
+.primaryButton {
+    color: var(--cl-light);
+    background-color: var(--cl-orange);
+}
+
+.secondaryButton {
+    color: var(--cl-orange);
+    background-color: transparent;
+}

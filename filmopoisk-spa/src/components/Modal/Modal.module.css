@@ -1,0 +1,31 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overscroll-behavior: contain;
+    z-index: 3000;
+}
+.modal {
+    background-color: var(--cl-light);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 0 1 344px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
